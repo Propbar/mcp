@@ -30,7 +30,7 @@ Powered by [Propbar's](https://propbar.co.uk) comprehensive UK property database
 
 ## Connection
 
-**Endpoint:** `https://api.propbar.co.uk/mcp/streamable`
+**Endpoint:** `https://mcp.propbar.co.uk`
 
 **Transport:** Streamable HTTP (MCP 2025-03-26)
 
@@ -51,7 +51,7 @@ Add to your `claude_desktop_config.json`:
 {
   "mcpServers": {
     "propbar": {
-      "url": "https://api.propbar.co.uk/mcp/streamable"
+      "url": "https://mcp.propbar.co.uk"
     }
   }
 }
@@ -66,7 +66,7 @@ import { Client } from '@modelcontextprotocol/sdk/client/index.js'
 import { StreamableHTTPClientTransport } from '@modelcontextprotocol/sdk/client/streamableHttp.js'
 
 const transport = new StreamableHTTPClientTransport(
-  new URL('https://api.propbar.co.uk/mcp/streamable'),
+  new URL('https://mcp.propbar.co.uk'),
   {
     requestInit: {
       headers: {
@@ -155,7 +155,7 @@ Or with coordinates:
 
 Protected Resource Metadata (RFC 9728):
 ```
-https://api.propbar.co.uk/mcp/.well-known/oauth-protected-resource
+https://mcp.propbar.co.uk/.well-known/oauth-protected-resource
 ```
 
 ## Data Sources

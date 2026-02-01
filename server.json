@@ -10,7 +10,7 @@
   "remotes": [
     {
       "type": "streamable-http",
-      "url": "https://api.propbar.co.uk/mcp/streamable"
+      "url": "https://mcp.propbar.co.uk"
     }
   ]
 }
