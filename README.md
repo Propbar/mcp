@@ -1,22 +1,32 @@
 # Propbar MCP Server
 
-MCP server providing UK property research tools for AI assistants. Enables Claude, GPT, and other LLMs to search properties, analyse area safety, find nearby schools, explore demographics, and get property valuations.
+[![MCP Registry](https://img.shields.io/badge/MCP-Registry-blue)](https://registry.modelcontextprotocol.io)
+
+MCP server providing **UK property research tools** for AI assistants. Enables Claude, GPT, and other LLMs to search properties, analyse area safety, find nearby schools, explore demographics, and get property valuations.
 
 Powered by [Propbar's](https://propbar.co.uk) comprehensive UK property database.
 
+## Features
+
+- **Crime & Safety Analysis** - UK Police crime statistics with safety ratings
+- **School Finder** - Ofsted-rated schools with distance calculations
+- **Demographics** - UK Census 2021 data for any location
+- **Property Valuations** - Comparable sales and market analysis
+- **Flexible Inputs** - Use area codes OR coordinates for most tools
+
 ## Available Tools
 
-| Tool | Description |
-|------|-------------|
-| `search_areas` | Search UK areas by name or postcode |
-| `search_properties` | Search UK properties by address |
-| `get_area_details` | Get coordinates and area codes for a location |
-| `get_crime_stats` | Get crime statistics and safety ratings for an area |
-| `get_schools` | Get schools near a location with Ofsted ratings |
-| `get_property_basic` | Get basic property details |
-| `get_property_full` | Get full property details with price history |
-| `get_comparables` | Get comparable properties for valuation |
-| `get_demographics` | Get census demographics for an area |
+| Tool | Description | Input |
+|------|-------------|-------|
+| `search_areas` | Search UK areas by name or postcode | query |
+| `search_properties` | Search UK properties by address | query |
+| `get_area_details` | Get coordinates and area codes | areaCode or path |
+| `get_crime_stats` | Crime statistics and safety rating | areaCode OR lat/lng |
+| `get_schools` | Schools with Ofsted ratings | areaCode OR lat/lng |
+| `get_demographics` | Census demographics | areaCode OR lat/lng |
+| `get_property_basic` | Basic property details | propertyId |
+| `get_property_full` | Full property with history | propertyId |
+| `get_comparables` | Comparable properties | lat/lng or propertyId |
 
 ## Connection
 
@@ -51,8 +61,6 @@ You'll be prompted to authenticate via OAuth when first connecting.
 
 ### Programmatic Access
 
-For custom integrations, use the MCP SDK:
-
 ```typescript
 import { Client } from '@modelcontextprotocol/sdk/client/index.js'
 import { StreamableHTTPClientTransport } from '@modelcontextprotocol/sdk/client/streamableHttp.js'
@@ -78,32 +86,44 @@ const { tools } = await client.listTools()
 const result = await client.callTool('search_areas', { query: 'York' })
 ```
 
-## OAuth Discovery
+## Tool Workflow
 
-Protected Resource Metadata (RFC 9728):
 ```
-https://api.propbar.co.uk/mcp/.well-known/oauth-protected-resource
+┌─────────────────────┐     ┌─────────────────────┐
+│   search_areas      │     │  search_properties  │
+│   (get areaCode)    │     │  (get propertyId)   │
+└─────────┬───────────┘     └──────────┬──────────┘
+          │                            │
+          ▼                            ▼
+┌─────────────────────┐     ┌─────────────────────┐
+│  Area Tools:        │     │  Property Tools:    │
+│  • get_crime_stats  │     │  • get_property_*   │
+│  • get_schools      │     │  • get_comparables  │
+│  • get_demographics │     │                     │
+└─────────────────────┘     └─────────────────────┘
 ```
+
+**Flexible inputs:** Most area tools accept EITHER `areaCode` OR `latitude`/`longitude` coordinates.
 
 ## Example Usage
 
-### Search for an area
-```json
-{
-  "tool": "search_areas",
-  "arguments": {
-    "query": "York",
-    "limit": 5
-  }
-}
-```
-
-### Get crime statistics
+### Check area safety
 ```json
 {
   "tool": "get_crime_stats",
   "arguments": {
     "areaCode": "E06000014"
+  }
+}
+```
+
+Or with coordinates:
+```json
+{
+  "tool": "get_crime_stats",
+  "arguments": {
+    "latitude": 53.958,
+    "longitude": -1.080
   }
 }
 ```
@@ -120,6 +140,31 @@ https://api.propbar.co.uk/mcp/.well-known/oauth-protected-resource
 }
 ```
 
+### Get demographics
+```json
+{
+  "tool": "get_demographics",
+  "arguments": {
+    "areaCode": "E06000014",
+    "topics": ["ageBands", "ethnicGroup", "tenure"]
+  }
+}
+```
+
+## OAuth Discovery
+
+Protected Resource Metadata (RFC 9728):
+```
+https://api.propbar.co.uk/mcp/.well-known/oauth-protected-resource
+```
+
+## Data Sources
+
+- **Crime Statistics:** [Police UK](https://data.police.uk/)
+- **Schools:** [Get Information About Schools](https://get-information-schools.service.gov.uk/)
+- **Demographics:** [UK Census 2021](https://census.gov.uk/)
+- **Property Data:** [Propbar](https://propbar.co.uk)
+
 ## Support
 
 - **Website:** [propbar.co.uk](https://propbar.co.uk)
@@ -128,3 +173,7 @@ https://api.propbar.co.uk/mcp/.well-known/oauth-protected-resource
 ## License
 
 Proprietary - Requires active Propbar subscription.
+
+---
+
+*UK property research made simple for AI assistants.*
