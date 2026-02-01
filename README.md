@@ -298,6 +298,6 @@ Proprietary - Requires active Propbar subscription.
 
 ---
 
-**Keywords:** UK property API, automated valuation model, AVM, property comparables, house price data, EPC ratings, Rightmove data, Zoopla data, OnTheMarket, UK house prices, property market analysis, MCP server, AI property tools
+**Keywords:** UK property API, automated valuation model, AVM, property comparables, house price data, EPC ratings, UK house prices, property market analysis, MCP server, AI property tools, land registry data
 
 *UK property research and valuation tools for AI assistants.*
