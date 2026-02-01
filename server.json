@@ -1,86 +1,16 @@
 {
-  "$schema": "https://registry.modelcontextprotocol.io/schemas/server.json",
+  "$schema": "https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json",
   "name": "uk.co.propbar/research",
-  "description": "UK property research tools for AI assistants. Search areas, properties, get crime statistics, school ratings, demographics, property valuations and comparables. Powered by Propbar's comprehensive UK property data.",
+  "description": "UK property research tools - crime stats, schools, demographics, valuations for AI.",
   "version": "1.0.0",
-  "license": "Proprietary",
-  "homepage": "https://propbar.co.uk",
   "repository": {
-    "type": "git",
-    "url": "https://github.com/Propbar/mcp"
+    "url": "https://github.com/Propbar/mcp",
+    "source": "github"
   },
-  "authors": [
-    {
-      "name": "Propbar",
-      "email": "hello@propbar.co.uk",
-      "url": "https://propbar.co.uk"
-    }
-  ],
-  "categories": [
-    "data",
-    "real-estate",
-    "research"
-  ],
-  "tags": [
-    "property",
-    "real-estate",
-    "uk",
-    "crime",
-    "schools",
-    "demographics",
-    "valuation",
-    "research"
-  ],
   "remotes": [
     {
       "type": "streamable-http",
-      "url": "https://api.propbar.co.uk/mcp/streamable",
-      "auth": {
-        "type": "oauth2",
-        "discovery_url": "https://api.propbar.co.uk/mcp/.well-known/oauth-protected-resource"
-      }
+      "url": "https://api.propbar.co.uk/mcp/streamable"
     }
-  ],
-  "tools": [
-    {
-      "name": "search_areas",
-      "description": "Search UK areas by name or postcode"
-    },
-    {
-      "name": "search_properties",
-      "description": "Search UK properties by address"
-    },
-    {
-      "name": "get_area_details",
-      "description": "Get coordinates and area codes for a location"
-    },
-    {
-      "name": "get_crime_stats",
-      "description": "Get crime statistics and safety ratings for an area"
-    },
-    {
-      "name": "get_schools",
-      "description": "Get schools near a location with Ofsted ratings"
-    },
-    {
-      "name": "get_property_basic",
-      "description": "Get basic property details"
-    },
-    {
-      "name": "get_property_full",
-      "description": "Get full property details with price history"
-    },
-    {
-      "name": "get_comparables",
-      "description": "Get comparable properties for valuation"
-    },
-    {
-      "name": "get_demographics",
-      "description": "Get census demographics for an area"
-    }
-  ],
-  "requirements": {
-    "subscription": "Pro or Plus subscription required",
-    "authentication": "OAuth 2.1 via Supabase"
-  }
+  ]
 }
