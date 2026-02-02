@@ -1,0 +1,78 @@
+{
+  "$schema": "https://smithery.ai/schema/server.json",
+  "name": "Propbar UK Property Research",
+  "description": "UK property data for AI: crime statistics, school Ofsted ratings, ONS census demographics, automated valuations (AVM), comparable sales from Land Registry. Access 30M+ UK properties with sales history, EPC data, and market analysis.",
+  "vendor": "Propbar",
+  "homepage": "https://propbar.co.uk",
+  "repository": "https://github.com/Propbar/mcp",
+  "documentation": "https://propbar.co.uk/mcp",
+  "license": "Proprietary",
+  "runtime": "remote",
+  "transport": {
+    "type": "streamable-http",
+    "url": "https://mcp.propbar.co.uk"
+  },
+  "authentication": {
+    "type": "oauth2",
+    "metadata_url": "https://mcp.propbar.co.uk/.well-known/oauth-protected-resource"
+  },
+  "capabilities": {
+    "tools": true,
+    "resources": false,
+    "prompts": false
+  },
+  "tools": [
+    {
+      "name": "search_areas",
+      "description": "Search UK areas by name or postcode"
+    },
+    {
+      "name": "search_properties",
+      "description": "Search UK properties by address"
+    },
+    {
+      "name": "get_crime_stats",
+      "description": "Crime statistics and safety rating for UK areas"
+    },
+    {
+      "name": "get_schools",
+      "description": "Nearby schools with Ofsted ratings"
+    },
+    {
+      "name": "get_demographics",
+      "description": "ONS Census demographics data"
+    },
+    {
+      "name": "get_property_basic",
+      "description": "Basic property details"
+    },
+    {
+      "name": "get_property_full",
+      "description": "Full property with sales history"
+    },
+    {
+      "name": "get_comparables",
+      "description": "Comparable properties for AVM/valuation with 56 filterable fields"
+    }
+  ],
+  "keywords": [
+    "UK property",
+    "real estate",
+    "automated valuation",
+    "AVM",
+    "comparables",
+    "crime statistics",
+    "schools",
+    "Ofsted ratings",
+    "demographics",
+    "census data",
+    "Land Registry",
+    "EPC ratings",
+    "house prices"
+  ],
+  "categories": [
+    "real-estate",
+    "data",
+    "uk"
+  ]
+}

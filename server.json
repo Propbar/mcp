@@ -1,16 +1,44 @@
 {
   "$schema": "https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json",
   "name": "uk.co.propbar/research",
-  "description": "UK property research tools - crime stats, schools, demographics, valuations for AI.",
-  "version": "1.1.0",
+  "displayName": "Propbar UK Property Research",
+  "description": "UK property data for AI: crime statistics, school Ofsted ratings, ONS census demographics, automated valuations (AVM), comparable sales from Land Registry. Access 30M+ UK properties.",
+  "version": "1.2.0",
+  "vendor": {
+    "name": "Propbar",
+    "url": "https://propbar.co.uk"
+  },
   "repository": {
     "url": "https://github.com/Propbar/mcp",
     "source": "github"
   },
+  "homepage": "https://propbar.co.uk",
+  "documentation": "https://propbar.co.uk/mcp",
   "remotes": [
     {
-      "type": "streamable-http",
+      "type": "sse",
       "url": "https://mcp.propbar.co.uk"
+    },
+    {
+      "type": "streamable-http",
+      "url": "https://mcp.propbar.co.uk/streamable"
     }
+  ],
+  "authentication": {
+    "type": "oauth2",
+    "metadata": "https://mcp.propbar.co.uk/.well-known/oauth-protected-resource"
+  },
+  "keywords": [
+    "UK property",
+    "real estate",
+    "AVM",
+    "automated valuation",
+    "comparables",
+    "crime statistics",
+    "schools",
+    "Ofsted",
+    "demographics",
+    "Land Registry",
+    "EPC"
   ]
 }
